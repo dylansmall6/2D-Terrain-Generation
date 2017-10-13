@@ -8,33 +8,36 @@ public class NoiseGenerator
 	private final static int X_PRIME = 1619;
 	private final static int Y_PRIME = 31337;
 	private final static int Z_PRIME = 6971;
+
 	public NoiseGenerator(int seed)
 	{
 		this.$_seed = seed;
 	}
 
-	public float noise(float x, float y) {
-		return Perlin_2D($_seed,x*(float) 0.01,y* (float) 0.01);
+	public float noise(float x, float y)
+	{
+		return Perlin_2D($_seed, x * (float) 0.01, y * (float) 0.01);
 	}
-	public float noise(float x, float y, float z) {
-		return Perlin_3D($_seed,x* (float) 0.01,y* (float) 0.01,z* (float) 0.01);
+
+	public float noise(float x, float y, float z)
+	{
+		return Perlin_3D($_seed, x * (float) 0.01, y * (float) 0.01, z * (float) 0.01);
 	}
 	/*
 	 * Perlin Noise methods
 	 */
-	
-	
-	private static final FloatVector[] GRADIENT2D = {
-			new FloatVector(-1, -1), new FloatVector(1, -1), new FloatVector(-1, 1), new FloatVector(1, 1),
-			new FloatVector(0, -1), new FloatVector(-1, 0), new FloatVector(0, 1), new FloatVector(1, 0),
-		};
 
-		private static final FloatVector[] GRADIENT3D = {
-			new FloatVector(1, 1, 0), new FloatVector(-1, 1, 0), new FloatVector(1, -1, 0), new FloatVector(-1, -1, 0),
+	private static final FloatVector[] GRADIENT2D =
+	{ new FloatVector(-1, -1), new FloatVector(1, -1), new FloatVector(-1, 1), new FloatVector(1, 1),
+			new FloatVector(0, -1), new FloatVector(-1, 0), new FloatVector(0, 1), new FloatVector(1, 0), };
+
+	private static final FloatVector[] GRADIENT3D =
+	{ new FloatVector(1, 1, 0), new FloatVector(-1, 1, 0), new FloatVector(1, -1, 0), new FloatVector(-1, -1, 0),
 			new FloatVector(1, 0, 1), new FloatVector(-1, 0, 1), new FloatVector(1, 0, -1), new FloatVector(-1, 0, -1),
 			new FloatVector(0, 1, 1), new FloatVector(0, -1, 1), new FloatVector(0, 1, -1), new FloatVector(0, -1, -1),
-			new FloatVector(1, 1, 0), new FloatVector(0, -1, 1), new FloatVector(-1, 1, 0), new FloatVector(0, -1, -1),
-		};
+			new FloatVector(1, 1, 0), new FloatVector(0, -1, 1), new FloatVector(-1, 1, 0),
+			new FloatVector(0, -1, -1), };
+
 	private static float Lerp(float a, float b, float t)
 	{
 		return a + t * (b - a);
@@ -44,10 +47,11 @@ public class NoiseGenerator
 	{
 		return t * t * t * (t * (t * 6 - 15) + 10);
 	}
-	private static int floor(float f) {
+
+	private static int floor(float f)
+	{
 		return (f >= 0 ? (int) f : (int) f - 1);
 	}
-	
 
 	private static float GradCoord2D(int seed, int x, int y, float xd, float yd)
 	{
@@ -86,15 +90,15 @@ public class NoiseGenerator
 		int x1 = x0 + 1;
 		int y1 = y0 + 1;
 		int z1 = z0 + 1;
-		
+
 		float xs = QuinticInterpretation(x - x0);
 		float ys = QuinticInterpretation(y - y0);
 		float zs = QuinticInterpretation(z - z0);
-		
+
 		float xd0 = x - x0;
 		float yd0 = y - y0;
 		float zd0 = z - z0;
-		
+
 		float xd1 = xd0 - 1;
 		float yd1 = yd0 - 1;
 		float zd1 = zd0 - 1;
@@ -113,15 +117,16 @@ public class NoiseGenerator
 
 		return Lerp(yf0, yf1, zs);
 	}
-	private float Perlin_2D(int seed, float x, float y) {
+
+	private float Perlin_2D(int seed, float x, float y)
+	{
 		int x0 = floor(x);
 		int y0 = floor(y);
 		int x1 = x0 + 1;
 		int y1 = y0 + 1;
-		
+
 		float xs = QuinticInterpretation(x - x0);
 		float ys = QuinticInterpretation(y - y0);
-		
 
 		float xd0 = x - x0;
 		float yd0 = y - y0;
