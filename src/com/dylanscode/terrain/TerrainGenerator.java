@@ -92,7 +92,7 @@ public class TerrainGenerator
 
 	private class Board
 	{
-		protected int scale = 10, rows, cols, increment = 1;
+		protected int scale = 1, rows, cols, increment = 2;
 		private NoiseGenerator generator;
 		private Cell[][] cells;
 		protected Board(int width, int height)
