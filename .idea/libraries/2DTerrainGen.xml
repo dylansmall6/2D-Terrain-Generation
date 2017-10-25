@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="2DTerrainGen">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/2DTerrainGen.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
